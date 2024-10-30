@@ -9,6 +9,7 @@ import { Repository, UpdateResult } from 'typeorm';
 import { Song } from './entities/song.entity';
 import { CreateSongDto } from './dto/create-song.dto';
 import { UpdateSongDto } from './dto/update-song.dto';
+import { Artist } from 'src/artist/entities/artist.entity';
 
 @Injectable()
 export class SongsService {
@@ -18,6 +19,8 @@ export class SongsService {
 
   constructor(
     @InjectRepository(Song) private songRepository: Repository<Song>,
+    @InjectRepository(Artist)
+    private artistRepository: Repository<Artist>,
   ) {}
 
   //Create song
@@ -28,6 +31,10 @@ export class SongsService {
     song.releasedDate = songDTO.releasedDate;
     song.duration = songDTO.duration;
     song.lyrics = songDTO.lyrics;
+
+    const artists = await this.artistRepository.findByIds(songDTO.artists);
+    song.artists = artists;
+
     //Save the song in the database
     return await this.songRepository.save(song);
   }

@@ -11,6 +11,8 @@ import { ConfigModule } from '@nestjs/config';
 import { Song } from './songs/entities/song.entity';
 import { ArtistModule } from './artist/artist.module';
 import { UserModule } from './user/user.module';
+import { PlaylistsModule } from './playlists/playlists.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -31,6 +33,8 @@ import { UserModule } from './user/user.module';
     LoggerModule,
     ArtistModule,
     UserModule,
+    PlaylistsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
