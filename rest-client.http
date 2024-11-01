@@ -1,0 +1,16 @@
+### Login User
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+"email": "john@gmail.com",
+"password": "123456"
+}
+
+### Fetch all Songs
+GET http://localhost:3000/songs/2
+
+### Fetch login user profile
+GET http://localhost:3000/profile
+Authorization: Bearer
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwic3ViIjoxLCJpYXQiOjE3MzA0NTYzODEsImV4cCI6MTczMDU0Mjc4MX0.XeOdLBw0WJzIGyOdCV5TxknQodyDSn4YK8O9JAK6ttA
