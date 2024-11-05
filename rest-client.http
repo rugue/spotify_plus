@@ -14,3 +14,59 @@ GET http://localhost:3000/songs/2
 GET http://localhost:3000/profile
 Authorization: Bearer
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwic3ViIjoxLCJpYXQiOjE3MzA0NTYzODEsImV4cCI6MTczMDU0Mjc4MX0.XeOdLBw0WJzIGyOdCV5TxknQodyDSn4YK8O9JAK6ttA
+
+
+### Signup User
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+"firstName": "john",
+"lastName": "doe",
+"email": "john@gmail.com",
+"password": "123456"
+}
+
+
+### Artist Login User
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+"email": "john_doe@gmail.com",
+"password": "123456"
+}
+
+### Login User
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+"email": "john@gmail.com",
+"password": "123456"
+}
+
+### Create New SONGS REQUEST as An Artist
+POST http://localhost:3001/songs
+Authorization: Bearer
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwidXNlcklkIjoxLCJhcnRpc3RJZCI6MSwiaWF0IjoxNzMwNjc4MDMyLCJleHAiOjE3MzA3NjQ0MzJ9.kl_T2DY9hcZtHmxVi1OiqFZJKvgSrLQ-1dj3ePXwzzc
+Content-Type: application/json
+
+{
+"title": "You for me",
+"artists": [1],
+"releasedDate" : "2022-08-29",
+"duration" :"02:34",
+"lyrics": "by, you're my adrenaline. Brought out this other side of me You
+don't even know Controlling my whole anatomy, oh Fingers are holding you right at
+the edge You're slipping out of my hands Keeping my secrets all up in my head I'm
+scared that you won't want me back, oh I dance to every song like it's about ya I
+drink 'til I kiss someone who looks like ya I wish that I was honest when I had
+you I shoulda told you that I wanted you for me I dance to every song like it's
+about ya I drink 'til I kiss someone who looks like ya"
+}
+
+### Enable 2FA Authentication
+POST http://localhost:3000/auth/enable-2fa
+Authorization: Bearer
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwidXNlcklkIjoxLCJhcnRpc3RJZCI6MSwiaWF0IjoxNzMwNjc4MDMyLCJleHAiOjE3MzA3NjQ0MzJ9.kl_T2DY9hcZtHmxVi1OiqFZJKvgSrLQ-1dj3ePXwzzc

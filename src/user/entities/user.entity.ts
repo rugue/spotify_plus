@@ -16,9 +16,21 @@ export class User {
   @Column({ unique: true })
   email: string;
 
+  @Column({ nullable: true, type: 'text' })
+  twoFASecret: string;
+
+  @Column({ default: false, type: 'boolean' })
+  enable2FA: boolean;
+
+  @Column({ nullable: true })
+  apiKey: string;
+
   @Column()
   @Exclude()
   password: string;
+
+  @Column()
+  phone: string;
 
   /**
    * A user can create many playLists
