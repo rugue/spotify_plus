@@ -21,6 +21,7 @@ import { SeedModule } from './seed/seed.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      envFilePath: ['.development.env', '.production.env'],
     }),
     TypeOrmModule.forRoot(
       dataSourceOptions,
