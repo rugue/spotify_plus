@@ -1,3 +1,18 @@
+### Get all songs
+GET http://localhost:3000/songs
+
+### Get a specific song
+GET http://localhost:3000/songs/1
+
+### CReate a song
+POST http://localhost:3000/songs
+
+### Update song
+PUT http://localhost:3000/songs/1
+
+### Delete a song
+DELETE http://localhost:3000/songs/1
+
 ### Login User
 POST http://localhost:3000/auth/login
 Content-Type: application/json
@@ -70,3 +85,7 @@ about ya I drink 'til I kiss someone who looks like ya"
 POST http://localhost:3000/auth/enable-2fa
 Authorization: Bearer
 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwidXNlcklkIjoxLCJhcnRpc3RJZCI6MSwiaWF0IjoxNzMwNjc4MDMyLCJleHAiOjE3MzA3NjQ0MzJ9.kl_T2DY9hcZtHmxVi1OiqFZJKvgSrLQ-1dj3ePXwzzc
+
+
+### TEST ENV VARIABLES
+GET http://localhost:3001/auth/test

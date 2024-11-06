@@ -93,6 +93,11 @@ export class AuthController {
     return this.authService.create(createAuthDto);
   }
 
+  @Get('test')
+  testEnv() {
+    return this.authService.getEnvVariables();
+  }
+
   @Get()
   findAll() {
     return this.authService.findAll();

@@ -8,7 +8,7 @@ import { PassportModule } from '@nestjs/passport';
 import { JWTStrategy } from './jwt.strategy';
 import { ArtistsModule } from 'src/artists/artists.module';
 import { ApiKeyStrategy } from './api-key.strategy';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -16,13 +16,19 @@ import { ConfigModule } from '@nestjs/config';
     PassportModule,
     UserModule,
     ArtistsModule,
-    JwtModule.register({
-      secret: process.env.JWT_SECRET,
-      signOptions: { expiresIn: '1d' },
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        secret: configService.get<string>('secret'),
+        signOptions: {
+          expiresIn: '1d',
+        },
+      }),
+      inject: [ConfigService],
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, JWTStrategy],
+  providers: [AuthService, JWTStrategy, ApiKeyStrategy],
   exports: [AuthService],
 })
 export class AuthModule {}

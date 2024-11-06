@@ -16,12 +16,14 @@ import { JwtModule } from '@nestjs/jwt';
 import { JWTStrategy } from './auth/jwt.strategy';
 import { dataSourceOptions } from '../db/data-source';
 import { SeedModule } from './seed/seed.module';
+import configuration from './config/configuration';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: ['.development.env', '.production.env'],
+      load: [configuration],
     }),
     TypeOrmModule.forRoot(
       dataSourceOptions,

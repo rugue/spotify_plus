@@ -13,6 +13,7 @@ import { UpdateResult } from 'typeorm';
 import { User } from 'src/user/entities/user.entity';
 import { CreateUserDTO } from 'src/user/dto/create-user.dto';
 import { v4 as uuid4 } from 'uuid';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
@@ -20,6 +21,7 @@ export class AuthService {
     private userService: UserService,
     private jwtService: JwtService, // 1
     private artistService: ArtistsService,
+    private configService: ConfigService,
   ) {}
 
   create(createAuthDto: CreateAuthDto) {
@@ -127,6 +129,12 @@ export class AuthService {
 
   async validateUserByApiKey(apiKey: string): Promise<User> {
     return this.userService.findByApiKey(apiKey);
+  }
+
+  getEnvVariables() {
+    return {
+      port: this.configService.get<number>('port'),
+    };
   }
 
   findAll() {
