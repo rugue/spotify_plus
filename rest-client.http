@@ -42,6 +42,23 @@ Content-Type: application/json
 "password": "123456"
 }
 
+### Signup another User
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+"firstName": "rugue",
+"lastName": "nehi",
+"email": "ruguenehi@gmail.com",
+"password": "123456",
+}
+
+### Access Profile 
+GET http://localhost:3000/profile
+Authorization: Bearer
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZ21haWwuY29tIiwic3ViIjoxLCJpYXQiOjE3MzA0NTYzODEsImV4cCI6MTczMDU0Mjc4MX0.XeOdLBw0WJzIGyOdCV5TxknQodyDSn4YK8O9JAK6ttA
+
+
 
 ### Artist Login User
 POST http://localhost:3000/auth/login

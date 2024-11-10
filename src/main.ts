@@ -10,6 +10,6 @@ async function bootstrap() {
   const seedService = app.get(SeedService);
   await seedService.seed();
   const configService = app.get(ConfigService); //// get the instance of ConfigService using app.get
-  await app.listen(configService.get<number>('port'));
+  await app.listen(3000);
 }
 bootstrap();

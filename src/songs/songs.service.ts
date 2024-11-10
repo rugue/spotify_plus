@@ -5,7 +5,7 @@ import {
 } from 'nestjs-typeorm-paginate';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, UpdateResult } from 'typeorm';
+import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { Song } from './entities/song.entity';
 import { CreateSongDto } from './dto/create-song.dto';
 import { UpdateSongDto } from './dto/update-song.dto';
@@ -47,8 +47,8 @@ export class SongsService {
     return this.songRepository.findOneBy({ id });
   }
 
-  async remove(id: number): Promise<void> {
-    await this.songRepository.delete(id);
+  async remove(id: number): Promise<DeleteResult> {
+    return await this.songRepository.delete(id);
   }
 
   update(id: number, recordToUpdate: UpdateSongDto): Promise<UpdateResult> {

@@ -15,8 +15,8 @@ export class UserService {
   ) {}
 
   async create(userDTO: CreateUserDTO): Promise<User> {
-    const salt = await bcrypt.genSalt(); // 2.
-    userDTO.password = await bcrypt.hash(userDTO.password, salt); // 3.
+    // 2.
+    // 3.
     // userDTO.apiKey = uuid4();
     // const user = await this.userRepository.save(userDTO); // 4.
     // // const user = new User();
@@ -35,7 +35,11 @@ export class UserService {
     user.lastName = userDTO.lastName;
     user.email = userDTO.email;
     user.apiKey = uuid4(); // Generate the UUID directly on the user entity
-    user.password = await bcrypt.hash(userDTO.password, await bcrypt.genSalt());
+
+    const salt = await bcrypt.genSalt();
+    user.password = await bcrypt.hash(userDTO.password, salt);
+    //  userDTO.password = await bcrypt.hash(userDTO.password, salt);
+
     const savedUser = await this.userRepository.save(user);
     delete savedUser.password;
     return savedUser;
@@ -68,18 +72,6 @@ export class UserService {
   async findById(id: number): Promise<User> {
     return this.userRepository.findOneBy({ id: id });
   }
-
-  // async signup(userDTO: CreateUserDTO): Promise<User> {
-  //   const user = new User();
-  //   user.firstName = userDTO.firstName;
-  //   user.lastName = userDTO.lastName;
-  //   user.email = userDTO.email;
-  //   user.apiKey = uuid4();
-  //   user.password = userDTO.password;
-  //   const savedUser = await this.userRepository.save(user);
-  //   delete savedUser.password;
-  //   return savedUser;
-  // }
 
   findAll() {
     return `This action returns all user`;

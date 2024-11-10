@@ -38,10 +38,6 @@ import configuration from './config/configuration';
       //   synchronize: true,
       // }
     ),
-    JwtModule.register({
-      secret: process.env.JWT_SECRET || 'default_secret', // Use an environment variable
-      signOptions: { expiresIn: '60m' },
-    }),
     SongsModule,
     LoggerModule,
     UserModule,
@@ -49,6 +45,10 @@ import configuration from './config/configuration';
     AuthModule,
     ArtistsModule,
     SeedModule,
+    // JwtModule.register({
+    //   secret: process.env.JWT_SECRET || 'default_secret', // Use an environment variable
+    //   signOptions: { expiresIn: '60m' },
+    // }),
   ],
   controllers: [AppController],
   providers: [AppService, JWTStrategy],

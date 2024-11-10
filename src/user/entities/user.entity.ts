@@ -22,7 +22,7 @@ export class User {
   @Column({ default: false, type: 'boolean' })
   enable2FA: boolean;
 
-  @Column({ nullable: true })
+  @Column()
   apiKey: string;
 
   @Column()

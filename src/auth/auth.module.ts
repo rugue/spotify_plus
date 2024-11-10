@@ -16,15 +16,19 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     PassportModule,
     UserModule,
     ArtistsModule,
-    JwtModule.registerAsync({
-      imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => ({
-        secret: configService.get<string>('secret'),
-        signOptions: {
-          expiresIn: '1d',
-        },
-      }),
-      inject: [ConfigService],
+    // JwtModule.registerAsync({
+    //   imports: [ConfigModule],
+    //   useFactory: async (configService: ConfigService) => ({
+    //     secret: configService.get<string>('secret'),
+    //     signOptions: {
+    //       expiresIn: '1d',
+    //     },
+    //   }),
+    //   inject: [ConfigService],
+    // }),
+    JwtModule.register({
+      secret: process.env.JWT_SECRET || 'default_secret', // Use an environment variable
+      signOptions: { expiresIn: '1d' },
     }),
   ],
   controllers: [AuthController],

@@ -44,8 +44,11 @@ export class AuthService {
       // return user;
       // Sends JWT Token back in the response
       // const payload = { email: user.email, sub: user.id };
-      const payload: PayloadType = { email: user.email, userId: user.id }; // 1
-
+      const payload: PayloadType = { email: user.email, userId: user.id };
+      const artist = await this.artistService.findArtist(user.id); // 1
+      if (artist) {
+        payload.artistId = artist.id;
+      }
       // If user has enabled 2FA and have the secret key then
       if (user.enable2FA && user.twoFASecret) {
         //1.
@@ -60,11 +63,11 @@ export class AuthService {
       }
 
       // find if it is an artist then the add the artist id to payload
-      const artist = await this.artistService.findArtist(user.id); // 2
-      if (artist) {
-        // 3
-        payload.artistId = artist.id;
-      }
+      // const artist = await this.artistService.findArtist(user.id); // 2
+      // if (artist) {
+      //   // 3
+      //   payload.artistId = artist.id;
+      // }
       return {
         accessToken: this.jwtService.sign(payload),
       };
